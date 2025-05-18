@@ -5,3 +5,4 @@ venv/
 instance/
 *.sqlite3
 .env
+.venv
