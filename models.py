@@ -28,6 +28,12 @@ class Project(db.Model):
     description = db.Column(db.Text)
     created_by = db.Column(db.Integer, db.ForeignKey('user.id'))
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    deadline= db.Column(db.Date, nullable=False)
+    projectimg=db.Column(db.String, nullable= False)
+    tags=db.Column(db.String)
+
+
+
 
     members = db.relationship('ProjectMember', backref='project', lazy=True)
     tasks = db.relationship('Task', backref='project', lazy=True)
@@ -92,4 +98,58 @@ with app.app_context():
         db.session.commit()
         print("User user created.")
     else:
+        admin = User.query.filter_by(email='singhadmin@gmail.com').first()
         print('User already exits')
+
+    # Insert dummy projects if none exist
+    from random import randint
+    from datetime import timedelta
+    if not Project.query.first():
+        projects = [
+            Project(
+                name="E-commerce Website",
+                description="Build a full-stack e-commerce website.",
+                created_by=admin.id,
+                deadline=date.today() + timedelta(days=randint(10, 30)),
+                projectimg="ecommerce.png",
+                tags="ecommerce,web"
+            ),
+            Project(
+                name="Mobile App UI",
+                description="Design user interface for mobile application.",
+                created_by=admin.id,
+                deadline=date.today() + timedelta(days=randint(10, 30)),
+                projectimg="mobileui.png",
+                tags="mobile,ui"
+            ),
+            Project(
+                name="Marketing Campaign",
+                description="Plan and execute a digital marketing campaign.",
+                created_by=admin.id,
+                deadline=date.today() + timedelta(days=randint(10, 30)),
+                projectimg="marketing.jpg",
+                tags="marketing,digital"
+            ),
+            Project(
+                name="Data Analysis Dashboard",
+                description="Create a dashboard for data visualization.",
+                created_by=admin.id,
+                deadline=date.today() + timedelta(days=randint(10, 30)),
+                projectimg="dashboard.png",
+                tags="data,visualization"
+            ),
+            Project(
+                name="Event Management App",
+                description="Develop a system for managing events and attendees.",
+                created_by=admin.id,
+                deadline=date.today() + timedelta(days=randint(10, 30)),
+                projectimg="eventapp.png",
+                tags="event,app"
+            )
+        ]
+        db.session.add_all(projects)
+        db.session.commit()
+        print("Dummy projects created.")
+    else:
+        print("Projects already exist.")
+    

@@ -3,14 +3,15 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_restful import Api, Resource, reqparse
 import os
 from flask_sqlalchemy import SQLAlchemy
-from models import db,User
+from models import db,User,Project
 from datetime import datetime, date
 app = Flask(__name__)
-
+# Set a secret key for session management
+app.secret_key = 'a8f5f167f44f4964e6c998dee827110c'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///synergyshere.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-
+app.secret_key = os.environ.get('SECRET_KEY', 'fallback_dev_key')
 db.init_app(app)
 
 def get_db():
@@ -56,7 +57,7 @@ def login_post():
         flash('useranmae does not exist')
         return redirect(url_for('login'))
     if not check_password_hash(user.password, password):
-        flash('icorrect password')
+        flash('incorrect password')
         return redirect(url_for('login'))
     session['user_id'] = user.id
     flash('login succesfull')
@@ -64,7 +65,12 @@ def login_post():
 
 @app.route("/layout")
 def layout():
-    return render_template("layout.html")
+    project = Project.query.all()
+    return render_template("layout.html",projects=project)
+@app.route('/logout')
+def logout():
+    session.pop('user_id')
+    return redirect(url_for('login'))
 
 
 
