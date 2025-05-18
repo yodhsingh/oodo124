@@ -4,9 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SynergySphere - Dashboard</title>
-  <!-- You can also include your own style.css here -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
   <style>
-    /* Base Reset and Layout */
+    
     * {
       box-sizing: border-box;
     }
@@ -21,7 +22,7 @@
       width: 100%;
     }
     
-    /* Sidebar */
+    
     .sidebar {
       width: 250px;
       background-color: #2c3e50;
@@ -59,7 +60,7 @@
       color: #1abc9c;
     }
     
-    /* Main Content */
+    
     main {
       margin-left: 250px;
       width: 100%;
@@ -68,17 +69,15 @@
     }
     header {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
       padding: 10px 0;
       border-bottom: 1px solid #ddd;
+     
     }
-    .search-bar input {
-      padding: 8px 12px;
-      width: 250px;
-      max-width: 100%;
-      border: 1px solid #ccc;
-      border-radius: 4px;
+    .right-header {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 15px;
     }
     .icons {
       font-size: 1.4em;
@@ -94,13 +93,20 @@
     .icons span:hover {
       color: #1abc9c;
     }
+    .search-bar input {
+      padding: 8px 12px;
+      width: 250px;
+      max-width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
     
-    /* Content */
+    /* Content styling */
     .content {
       margin-top: 20px;
     }
     
-    /* Responsive adjustments */
+    
     @media (max-width: 768px) {
       .sidebar {
         width: 200px;
@@ -110,54 +116,50 @@
       }
       header {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: flex-end;
       }
       .search-bar input {
         width: 100%;
-        margin-bottom: 10px;
-      }
-      .icons {
-        align-self: flex-end;
+        margin-top: 10px;
       }
     }
   </style>
-  <!-- JavaScript for functionality -->
+  
+  
   <script defer>
     document.addEventListener("DOMContentLoaded", function () {
-      // Get elements from the DOM:
+      
       const notificationBtn = document.getElementById("notificationBtn");
       const settingsBtn = document.getElementById("settingsBtn");
       const projectsBtn = document.getElementById("projectsBtn");
       const tasksBtn = document.getElementById("tasksBtn");
       const mainContent = document.getElementById("mainContent");
       
-      // Notification functionality
+      
       notificationBtn.addEventListener("click", function () {
         alert("You have new notifications!");
       });
       
-      // Settings functionality
+      
       settingsBtn.addEventListener("click", function () {
         alert("Settings functionality coming soon!");
       });
       
-      // Projects button functionality: update content area with Projects view
+      
       projectsBtn.addEventListener("click", function (e) {
         e.preventDefault();
         mainContent.innerHTML = `
           <h1>Projects</h1>
           <p>Here is a list of your projects.</p>
-          <!-- You can add dynamic content or load via AJAX -->
         `;
       });
       
-      // My Tasks button functionality: update content area with Tasks view
+      
       tasksBtn.addEventListener("click", function (e) {
         e.preventDefault();
         mainContent.innerHTML = `
           <h1>My Tasks</h1>
           <p>Here is a list of your tasks.</p>
-          <!-- You can add dynamic content or load via AJAX -->
         `;
       });
     });
@@ -165,7 +167,7 @@
 </head>
 <body>
   <div class="container">
-    <!-- Sidebar -->
+    
     <nav class="sidebar">
       <div class="company-badge">
         <img src="company-logo.png" alt="Company Badge" />
@@ -176,18 +178,27 @@
         <li><a href="#" id="tasksBtn">✅ My Tasks</a></li>
       </ul>
     </nav>
-    
-    <!-- Main Content -->
+
     <main>
       <header>
-        <div class="search-bar">
-          <input type="text" placeholder="Search..." />
-        </div>
-        <div class="icons">
-          <span id="notificationBtn" class="notification">🔔</span>
-          <span id="settingsBtn" class="settings">⚙️</span>
+        
+        <div class="right-header">
+          <div class="icons">
+            <span id="notificationBtn" class="notification">🔔</span>
+            <span id="settingsBtn" class="settings">⚙️</span>
+          </div>
+          <div class="search-bar">
+            <input type="text" placeholder="Search..." />
+          </div>
         </div>
       </header>
+      <nav aria-label="breadcrumb" class="mt-3">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Current View</li>
+        </ol>
+      </nav>
       <section class="content" id="mainContent">
         <h1>Welcome to SynergySphere</h1>
         <p>Manage your projects and tasks seamlessly.</p>
