@@ -1,115 +1,199 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SynergySphere - Dashboard</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
-    <style>
-        body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    display: flex;
-}
-
-.container {
-    display: flex;
-    width: 100%;
-}
-
-.sidebar {
-    width: 250px;
-    background-color: #2C3E50;
-    color: white;
-    height: 100vh;
-    padding: 20px;
-    position: fixed;
-    left: 0;
-    transition: width 0.3s ease;
-}
-
-.company-badge {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.company-badge img {
-    width: 40px;
-}
-
-.sidebar ul {
-    list-style: none;
-    padding: 0;
-}
-
-.sidebar ul li {
-    padding: 10px;
-}
-
-.sidebar ul li a {
-    text-decoration: none;
-    color: white;
-    display: block;
-}
-
-main {
-    margin-left: 250px;
-    width: 100%;
-    padding: 20px;
-}
-
-header {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 10px;
-}
-
-.search-bar input {
-    padding: 8px;
-    width: 200px;
-}
-
-.icons span {
-    padding: 10px;
-    cursor: pointer;
-}
-
-    </style>
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SynergySphere - Dashboard</title>
+  <!-- You can also include your own style.css here -->
+  <style>
+    /* Base Reset and Layout */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      display: flex;
+      background-color: #f4f6f8;
+    }
+    .container {
+      display: flex;
+      width: 100%;
+    }
+    
+    /* Sidebar */
+    .sidebar {
+      width: 250px;
+      background-color: #2c3e50;
+      color: #fff;
+      height: 100vh;
+      padding: 20px;
+      position: fixed;
+      left: 0;
+      transition: width 0.3s ease;
+    }
+    .company-badge {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+    .company-badge img {
+      width: 40px;
+    }
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+    .sidebar ul li {
+      padding: 10px 0;
+    }
+    .sidebar ul li a {
+      text-decoration: none;
+      color: #fff;
+      display: block;
+      font-size: 1.1em;
+      transition: color 0.2s;
+    }
+    .sidebar ul li a:hover {
+      color: #1abc9c;
+    }
+    
+    /* Main Content */
+    main {
+      margin-left: 250px;
+      width: 100%;
+      padding: 20px;
+      min-height: 100vh;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid #ddd;
+    }
+    .search-bar input {
+      padding: 8px 12px;
+      width: 250px;
+      max-width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .icons {
+      font-size: 1.4em;
+      display: flex;
+      gap: 15px;
+    }
+    .icons span {
+      padding: 8px;
+      cursor: pointer;
+      user-select: none;
+      transition: color 0.2s;
+    }
+    .icons span:hover {
+      color: #1abc9c;
+    }
+    
+    /* Content */
+    .content {
+      margin-top: 20px;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 200px;
+      }
+      main {
+        margin-left: 200px;
+      }
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .search-bar input {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+      .icons {
+        align-self: flex-end;
+      }
+    }
+  </style>
+  <!-- JavaScript for functionality -->
+  <script defer>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Get elements from the DOM:
+      const notificationBtn = document.getElementById("notificationBtn");
+      const settingsBtn = document.getElementById("settingsBtn");
+      const projectsBtn = document.getElementById("projectsBtn");
+      const tasksBtn = document.getElementById("tasksBtn");
+      const mainContent = document.getElementById("mainContent");
+      
+      // Notification functionality
+      notificationBtn.addEventListener("click", function () {
+        alert("You have new notifications!");
+      });
+      
+      // Settings functionality
+      settingsBtn.addEventListener("click", function () {
+        alert("Settings functionality coming soon!");
+      });
+      
+      // Projects button functionality: update content area with Projects view
+      projectsBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        mainContent.innerHTML = `
+          <h1>Projects</h1>
+          <p>Here is a list of your projects.</p>
+          <!-- You can add dynamic content or load via AJAX -->
+        `;
+      });
+      
+      // My Tasks button functionality: update content area with Tasks view
+      tasksBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        mainContent.innerHTML = `
+          <h1>My Tasks</h1>
+          <p>Here is a list of your tasks.</p>
+          <!-- You can add dynamic content or load via AJAX -->
+        `;
+      });
+    });
+  </script>
 </head>
 <body>
-    <div class="container">
-        <!-- Sidebar -->
-        <nav class="sidebar">
-            <div class="company-badge">
-                <img src="company-logo.png" alt="Company Badge">
-                <h2>SynergySphere</h2>
-            </div>
-            <ul>
-                <li><a href="#">📂 Projects</a></li>
-                <li><a href="#">✅ My Tasks</a></li>
-            </ul>
-        </nav>
-
-        <!-- Main Content -->
-        <main>
-            <header>
-                <div class="search-bar">
-                    <input type="text" placeholder="Search...">
-                </div>
-                <div class="icons">
-                    <span class="notification">🔔</span>
-                    <span class="settings">⚙️</span>
-                </div>
-            </header>
-            <section class="content">
-                <h1>Welcome to SynergySphere</h1>
-                <p>Manage your projects and tasks seamlessly.</p>
-            </section>
-        </main>
-    </div>
+  <div class="container">
+    <!-- Sidebar -->
+    <nav class="sidebar">
+      <div class="company-badge">
+        <img src="company-logo.png" alt="Company Badge" />
+        <h2>SynergySphere</h2>
+      </div>
+      <ul>
+        <li><a href="#" id="projectsBtn">📂 Projects</a></li>
+        <li><a href="#" id="tasksBtn">✅ My Tasks</a></li>
+      </ul>
+    </nav>
+    
+    <!-- Main Content -->
+    <main>
+      <header>
+        <div class="search-bar">
+          <input type="text" placeholder="Search..." />
+        </div>
+        <div class="icons">
+          <span id="notificationBtn" class="notification">🔔</span>
+          <span id="settingsBtn" class="settings">⚙️</span>
+        </div>
+      </header>
+      <section class="content" id="mainContent">
+        <h1>Welcome to SynergySphere</h1>
+        <p>Manage your projects and tasks seamlessly.</p>
+      </section>
+    </main>
+  </div>
 </body>
 </html>
+
