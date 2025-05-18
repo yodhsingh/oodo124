@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SynergySphere - Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    display: flex;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #2C3E50;
+    color: white;
+    height: 100vh;
+    padding: 20px;
+    position: fixed;
+    left: 0;
+    transition: width 0.3s ease;
+}
+
+.company-badge {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.company-badge img {
+    width: 40px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 10px;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: white;
+    display: block;
+}
+
+main {
+    margin-left: 250px;
+    width: 100%;
+    padding: 20px;
+}
+
+header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 10px;
+}
+
+.search-bar input {
+    padding: 8px;
+    width: 200px;
+}
+
+.icons span {
+    padding: 10px;
+    cursor: pointer;
+}
+
+    </style>
+
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="company-badge">
+                <img src="company-logo.png" alt="Company Badge">
+                <h2>SynergySphere</h2>
+            </div>
+            <ul>
+                <li><a href="#">📂 Projects</a></li>
+                <li><a href="#">✅ My Tasks</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main>
+            <header>
+                <div class="search-bar">
+                    <input type="text" placeholder="Search...">
+                </div>
+                <div class="icons">
+                    <span class="notification">🔔</span>
+                    <span class="settings">⚙️</span>
+                </div>
+            </header>
+            <section class="content">
+                <h1>Welcome to SynergySphere</h1>
+                <p>Manage your projects and tasks seamlessly.</p>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
